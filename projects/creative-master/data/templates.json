@@ -1,0 +1,82 @@
+[
+    {
+        "id": "tpl-001",
+        "name": "创意盲盒-有声版",
+        "category": "hot",
+        "cover": "assets/templates/tpl-001/cover.jpg",
+        "video": "assets/templates/tpl-001/preview.mp4",
+        "description": "随机创意灵感，有声版本，更具冲击力",
+        "usageCount": 3241,
+        "costPoints": 120
+    },
+    {
+        "id": "tpl-002",
+        "name": "创意盲盒",
+        "category": "hot",
+        "cover": "assets/templates/tpl-002/cover.jpg",
+        "video": "assets/templates/tpl-002/preview.mp4",
+        "description": "随机创意灵感，让您的商品与众不同",
+        "usageCount": 5892,
+        "costPoints": 100
+    },
+    {
+        "id": "tpl-003",
+        "name": "云朵世界（毛绒版）",
+        "category": "general",
+        "cover": "assets/templates/tpl-003/cover.jpg",
+        "video": "assets/templates/tpl-003/preview.mp4",
+        "description": "上传产品图片，变成毛茸茸效果，进入梦幻云朵世界。各品类通用。",
+        "usageCount": 2374,
+        "costPoints": 120
+    },
+    {
+        "id": "tpl-004",
+        "name": "金马迎春",
+        "category": "newyear",
+        "cover": "assets/templates/tpl-004/cover.jpg",
+        "video": "assets/templates/tpl-004/preview.mp4",
+        "description": "马年限定，金色骏马配合烟花效果，适合年货节推广",
+        "usageCount": 1856,
+        "costPoints": 150
+    },
+    {
+        "id": "tpl-005",
+        "name": "创意大师新年活动",
+        "category": "newyear",
+        "cover": "assets/templates/tpl-005/cover.jpg",
+        "video": "assets/templates/tpl-005/preview.mp4",
+        "description": "新年活动专属模板，超市场景，喜庆氛围",
+        "usageCount": 2103,
+        "costPoints": 130
+    },
+    {
+        "id": "tpl-006",
+        "name": "超市购物车",
+        "category": "general",
+        "cover": "assets/templates/tpl-006/cover.jpg",
+        "video": "assets/templates/tpl-006/preview.mp4",
+        "description": "购物车场景，适合日用品、食品等品类",
+        "usageCount": 1432,
+        "costPoints": 100
+    },
+    {
+        "id": "tpl-007",
+        "name": "梦幻彩虹",
+        "category": "general",
+        "cover": "assets/templates/tpl-007/cover.jpg",
+        "video": "assets/templates/tpl-007/preview.mp4",
+        "description": "彩虹云朵梦幻场景，清新可爱风格",
+        "usageCount": 987,
+        "costPoints": 110
+    },
+    {
+        "id": "tpl-008",
+        "name": "唇釉特效",
+        "category": "beauty",
+        "cover": "assets/templates/tpl-008/cover.jpg",
+        "video": "assets/templates/tpl-008/preview.mp4",
+        "description": "专为唇釉、口红设计的展示特效",
+        "usageCount": 2567,
+        "costPoints": 120
+    }
+]

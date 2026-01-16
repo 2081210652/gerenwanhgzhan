@@ -4,358 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>张震 | AI产品经理个人主页</title>
-    <style>
-        /* --- 全局变量与重置 --- */
-        :root {
-            --bg-color: #0a0a12;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --primary: #00f2ea;
-            --secondary: #7000ff;
-            --text-main: #ffffff;
-            --text-sub: #a0a0b0;
-            --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-stack);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* --- 动态背景 Canvas --- */
-        #canvas-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        /* --- 布局容器 --- */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* --- 头部 Hero Section --- */
-        header {
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 60px 0 40px;
-        }
-
-        .hero-tag {
-            display: inline-block;
-            padding: 5px 12px;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.5s;
-        }
-
-        h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            opacity: 0;
-            animation: slideUp 0.8s ease forwards 0.2s;
-        }
-
-        .job-title {
-            font-size: 1.8rem;
-            color: var(--text-sub);
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: slideUp 0.8s ease forwards 0.4s;
-        }
-
-        .typewriter {
-            font-family: 'Courier New', monospace;
-            color: var(--primary);
-            font-size: 1.2rem;
-            min-height: 1.6em;
-            margin-bottom: 40px;
-        }
-
-        /* --- 主导航按钮 --- */
-        .nav-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 10px 0 0;
-        }
-
-        .nav-button {
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: radial-gradient(circle at top left, rgba(0,242,234,0.18), rgba(112,0,255,0.1));
-            color: var(--text-main);
-            padding: 8px 18px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(8px);
-            transition: all 0.25s ease;
-        }
-
-        .nav-button::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: radial-gradient(circle, var(--primary), var(--secondary));
-            box-shadow: 0 0 10px rgba(0,242,234,0.9);
-        }
-
-        .nav-button:hover {
-            border-color: var(--primary);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(0, 242, 234, 0.25);
-        }
-
-        .nav-button.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-        }
-
-        .contact-info {
-            display: flex;
-            gap: 20px;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 1s;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
-            padding: 10px 20px;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-            text-decoration: none;
-            color: white;
-            border: 1px solid transparent;
-            font-size: 0.9rem;
-        }
-
-        .contact-item:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 242, 234, 0.2);
-        }
-
-        /* --- 通用 Section --- */
-        section {
-            padding: 40px 0 10px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 24px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        /* --- 标签页逻辑 --- */
-        .tab-section {
-            display: none;
-        }
-
-        .tab-section.active {
-            display: block;
-        }
-
-        /* --- 经历时间轴 --- */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            border-left: 2px solid rgba(255,255,255,0.1);
-        }
-
-        .timeline-item {
-            margin-bottom: 40px;
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -36px;
-            top: 0;
-            width: 14px;
-            height: 14px;
-            background: var(--bg-color);
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .company { font-size: 1.5rem; font-weight: 700; color: #fff; }
-        .role { color: var(--primary); font-weight: 600; margin-right: 10px; }
-        .duration { color: var(--text-sub); font-size: 0.9rem; }
-        .location { color: var(--text-sub); font-size: 0.9rem; margin-left: auto; }
-
-        .tags {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: rgba(112, 0, 255, 0.2);
-            color: #d0bfff;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(112, 0, 255, 0.3);
-        }
-
-        .job-desc ul {
-            list-style: none;
-        }
-
-        .job-desc li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 12px;
-            color: #dcdcdc;
-        }
-
-        .job-desc li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-
-        /* --- 技能卡片 --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 25px;
-            border-radius: 12px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .skill-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .skill-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
-        }
-
-        .skill-list span {
-            display: inline-block;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            background: rgba(255,255,255,0.05);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-
-        /* --- 动画关键帧 --- */
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* --- 移动端适配 --- */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .job-header { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .location { margin-left: 0; }
-            .timeline { padding-left: 20px; }
-            .timeline-dot { left: -26px; width: 12px; height: 12px; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -363,7 +12,7 @@
 
     <div class="container">
         <header>
-            <span class="hero-tag">2026届 | AI产品经理 | 1年实战经验</span>
+            <span class="hero-tag">2026届 | AI产品经理 | 1年工作经验</span>
             <h1>张震 Zhang Zhen</h1>
             <div class="job-title">AI Product Manager (AIGC & Agent Design)</div>
             <div class="typewriter" id="typewriter"></div>
@@ -381,20 +30,22 @@
             </div>
 
             <div class="nav-buttons">
-                <button class="nav-button active" data-target="about">关于我</button>
+                <button class="nav-button active" data-target="about">个人优势</button>
                 <button class="nav-button" data-target="experience">实战经历</button>
+                <button class="nav-button" data-target="portfolio">作品集</button>
                 <button class="nav-button" data-target="skills">技能与教育</button>
             </div>
         </header>
 
-        <!-- 关于我 -->
+        <!-- 个人优势 -->
         <section id="about" class="tab-section active">
             <h2 class="section-title">核心优势</h2>
             <div class="card" style="font-size: 1.1rem; line-height: 1.8;">
                 <p>
-                    <span style="color:var(--primary)">◉ 商业化闭环：</span> 具备从0到1跟进AIGC项目并实现盈利的能力，擅长将技术DEMO转化为具有商业价值的MVP产品。<br>
-                    <span style="color:var(--primary)">◉ 智能体工程：</span> 精通RAG（检索增强生成）工作流设计，通过意图改写与混合检索策略将垂直场景问答准确率从65%提升至90%。<br>
-                    <span style="color:var(--primary)">◉ 敏锐市场感知：</span> 善于捕捉行业动态，主导的素材模版成功打造出近千万播放的黄金Case，实现用户口碑驱动的增长。
+                    <span style="color:var(--primary)">◉ AIGC落地案例：</span> 熟练掌握各大视频生成工具，熟悉各大模型特点，帮助公司产品打造近千万播放的千川素材黄金模版case。<br>
+                    <span style="color:var(--primary)">◉ AI前沿敏锐度：</span> 时刻关注国内外平台、AI研究专家、模型公司CEO、AI产品公司创始人等言论&播客，n8n搭建每日AI信息推送工作流至多维表格。<br>
+                    <span style="color:var(--primary)">◉ AI Native思维：</span> 在工作中会优先考虑Vibe Coding提效可能性，对重复劳动型工作利用dify、n8n、coze等工作平台搭建工作流&智能体。<br>
+                    <span style="color:var(--primary)">◉ 抖音生态经验：</span> 拥有在头部电商公司以及头部抖音第三方电商数据分析平台两份工作经验，对于AIGC能力在电商领域场景下的应用有丰富经验，擅长从多方立场思考问题。
                 </p>
             </div>
         </section>
@@ -410,22 +61,25 @@
                         <div class="job-header">
                             <div>
                                 <span class="company">蝉妈妈 (厦门立马耀)</span>
-                                <span class="role"> | AI产品经理实习生</span>
+                                <span class="role"> | AI产品经理 (AIGC产品)</span>
                             </div>
                             <div class="meta-info">
                                 <span class="duration">2025.06 – 2025.12</span>
                             </div>
                         </div>
                         <div class="tags">
-                            <span class="tag">AIGC商业化</span>
-                            <span class="tag">MVP落地</span>
-                            <span class="tag">视频素材模版</span>
+                            <span class="tag">市场及用户调研</span>
+                            <span class="tag">模型选型</span>
+                            <span class="tag">评测及调优</span>
+                            <span class="tag">提示词工程</span>
                         </div>
                         <div class="job-desc">
                             <ul>
-                                <li><strong>项目全闭环：</strong> 从0到1负责“创意大师”AIGC项目，涵盖需求调研、POC验证、MVP上线。首月付费用户突破3000+，成功跑通商业模式。</li>
-                                <li><strong>需求与质量管理：</strong> 建立严谨的模型评测体系，通过多方需求筛选确定优先级，确保模版生成效果稳定，实现上线0事故。</li>
-                                <li><strong>增长引擎：</strong> 迭代视频素材模版模块，支撑多个品牌方产出百万播放量素材，通过极佳的用户反馈实现口碑裂变增长。</li>
+                                <li><strong>产品落地：</strong> 深度洞察千川商家在过往素材生产中的痛点，通过对核心客户的访谈，得出客户在AI素材生成中实际痛点，撰写产品需求文档，推动"跑量案例+极简交互模版"的产品方向落地。</li>
+                                <li><strong>模型选型：</strong> 深度测评各大主流视频生成模型，基于抖音千川视频"前3秒"跑量案例音画同步的实现手段，选型Veo3作为带音效模板的核心引擎；针对无配音场景，灵活配置模型以保证效果多样性和成本性价比。</li>
+                                <li><strong>质量调优：</strong> 建立AI视频多维度量化评测体系，构建极端场景评测集，重点攻克"商品主体一致性"难题。通过对100+组Badcase的归因分析，改进约束方案，确保商品一致性成功率从初始的70%提升至90%。</li>
+                                <li><strong>提示词优化：</strong> 撰写高质量视频生成提示词，通过badcase分析改进优化提示词，累计输出102份视频模版，保证模版更新节奏，满足业务需求。</li>
+                                <li><strong>需求对接：</strong> 采集业务方&客户&市场等多方需求，筛选需求，确定需求优先级，并进行POC验证，确保模版的生成可行性与质量，成功帮助多位客户打造百万级播放千川素材黄金case。</li>
                             </ul>
                         </div>
                     </div>
@@ -436,23 +90,50 @@
                     <div class="card">
                         <div class="job-header">
                             <div>
-                                <span class="company">“知稷”智能体平台 (科大讯飞)</span>
-                                <span class="role"> | Agent工程师 (RAG)</span>
+                                <span class="company">科大讯飞</span>
+                                <span class="role"> | AI产品经理 (Agent平台)</span>
                             </div>
                             <div class="meta-info">
                                 <span class="duration">2025.01 – 2025.06</span>
                             </div>
                         </div>
                         <div class="tags">
-                            <span class="tag">RAG</span>
-                            <span class="tag">数据清洗</span>
-                            <span class="tag">意图识别</span>
+                            <span class="tag">知识库构建</span>
+                            <span class="tag">Agent设计</span>
+                            <span class="tag">RAG调优</span>
                         </div>
                         <div class="job-desc">
                             <ul>
-                                <li><strong>数据工程：</strong> 处理数千份复杂格式的粮食国标文件，通过布局分析解决解析难题，采用混合分段策略提升语义完整性。</li>
-                                <li><strong>Agent架构设计：</strong> 主导“仓储保管员规范查询”Agent设计，在多智能体架构下定义System Prompt与多路召回策略。</li>
-                                <li><strong>策略调优：</strong> 针对行业术语冷僻导致的检索偏航，引入意图改写，将场景问答准确率由65%提升至90%以上。</li>
+                                <li><strong>知识库构建：</strong> 参与数千份粮食国家标准及行业手册的全流程数据清洗与元数据定义。针对多栏、嵌套表格等复杂排版，利用布局分析解决了结构化解析难题。</li>
+                                <li><strong>Agent设计：</strong> 负责储粮助手Agent设计，在多智能体架构下，完成了专家建议智能体System Prompt的撰写与逻辑编排，定义了智能体的核心任务链与工具调用规范。</li>
+                                <li><strong>评测及调优：</strong> 与业务专家共同构建业务评测集，针对粮储行业冷僻术语导致的检索偏航等问题，引入了意图改写和混合检索策略，将该场景下的问答准确率从初期的65%提升至90%以上。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="job-header">
+                            <div>
+                                <span class="company">杭州交个朋友教育科技有限公司</span>
+                                <span class="role"> | 直播运营 (直播教学课程)</span>
+                            </div>
+                            <div class="meta-info">
+                                <span class="duration">2024.06 – 2025.12</span>
+                            </div>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">全场景优化</span>
+                            <span class="tag">投流AB测试</span>
+                            <span class="tag">AI脚本生产</span>
+                        </div>
+                        <div class="job-desc">
+                            <ul>
+                                <li><strong>全场景优化：</strong> 统筹"脚本-场景-商品-直播间设置"全链路，累计负责153场直播，通过优化主播话术与节奏，成功孵化新人主播，正式开播第一个月，单量产品线第二。</li>
+                                <li><strong>投流AB测试：</strong> 负责直播间素材与投放策略的优化，对大量投放素材分类，进行高频AB测试，通过对比点击率及转化指标，精准筛选跑量计划，加速定位核心受众。实时调控投放计划、流速、ROI及预算，通过精细化运营，提升素材在直播间的消耗，累计GMV达百万，投流ROI较平均水平提升4.4%。</li>
+                                <li><strong>AI脚本生产：</strong> 利用Dify搭建信息流素材批量生产工作流，通过积累的大量脚本数据。实现了信息流视频脚本的批量化产出，将单条脚本的撰写时间缩短了90%以上，有效支撑了直播间的素材量的需求。</li>
                             </ul>
                         </div>
                     </div>
@@ -461,27 +142,82 @@
             </div>
         </section>
 
+        <!-- 作品集 -->
+        <section id="portfolio" class="tab-section">
+            <h2 class="section-title">核心作品集</h2>
+            <div class="portfolio-grid">
+                
+                <!-- 创意大师卡片 - 点击跳转到独立项目页面 -->
+                <div class="card portfolio-card" onclick="openProjectDetail('creative-master')" style="cursor:pointer;">
+                    <div class="portfolio-img-placeholder">🎬</div>
+                    <h3 style="margin-bottom:10px;">"创意大师" AIGC 视频生产项目</h3>
+                    <p style="font-size:0.9rem; color:var(--text-sub); flex-grow:1;">从0到1负责的项目，首月付费用户突破3000+，支撑品牌方产出百万播放级素材。<strong style="color:var(--primary)">点击进入完整项目演示 →</strong></p>
+                    <div class="tags" style="margin-top:15px;">
+                        <span class="tag">AIGC 商业化</span>
+                        <span class="tag">Veo3 引擎</span>
+                        <span class="tag">全链路闭环</span>
+                        <span class="tag" style="background:var(--primary);color:white;">独立项目</span>
+                    </div>
+                </div>
+
+                <div class="card portfolio-card">
+                    <div class="portfolio-img-placeholder">🌾</div>
+                    <h3 style="margin-bottom:10px;">"知稷" RAG 智能体平台</h3>
+                    <p style="font-size:0.9rem; color:var(--text-sub); flex-grow:1;">针对粮食行业术语优化的 RAG 系统。通过意图改写将检索准确率从 65% 提升至 90%。</p>
+                    <div class="tags" style="margin-top:15px;">
+                        <span class="tag">RAG 调优</span>
+                        <span class="tag">Dify / Coze</span>
+                        <span class="tag">数据清洗</span>
+                    </div>
+                </div>
+
+                <div class="card portfolio-card">
+                    <div class="portfolio-img-placeholder">⚙️</div>
+                    <h3 style="margin-bottom:10px;">电商素材自动化生产工作流</h3>
+                    <p style="font-size:0.9rem; color:var(--text-sub); flex-grow:1;">基于 n8n 与 Dify 开发的自动化系统，实现单条视频脚本生产时间缩短 90% 以上。</p>
+                    <div class="tags" style="margin-top:15px;">
+                        <span class="tag">n8n</span>
+                        <span class="tag">工作流自动化</span>
+                        <span class="tag">降本增效</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- 技能与教育 -->
         <section id="skills" class="tab-section">
-            <h2 class="section-title">技能栈</h2>
+            <h2 class="section-title">专业技能栈</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="skill-title">🛠️ AI 工具链</div>
+                    <div class="skill-title">🛠️ AI 提效与开发</div>
                     <div class="skill-list">
-                        <span>ComfyUI</span>
-                        <span>Dify / Coze</span>
-                        <span>n8n (工作流自动化)</span>
-                        <span>Stable Diffusion</span>
+                        <span>Cursor / Trae</span>
+                        <span>Dify / Coze / n8n</span>
+                        <span>Manus / ClaudeCode</span>
+                        <span>AgentSkills</span>
                         <span>Prompt Engineering</span>
+                        <span>ComfyUI / Stable Diffusion</span>
                     </div>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-title">🎨 产品设计</div>
+                    <div class="skill-title">🎨 产品与设计</div>
                     <div class="skill-list">
-                        <span>Figma</span>
-                        <span>墨刀 / Axure</span>
-                        <span>数据分析 (SQL)</span>
+                        <span>Figma / Axure / 墨刀</span>
+                        <span>NotebookLLM / Perplexity</span>
+                        <span>SQL 数据分析</span>
                         <span>PRD / 竞品调研</span>
+                        <span>剪映 / AE / 达芬奇</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">📊 办公与工具</div>
+                    <div class="skill-list">
+                        <span>飞书多维表格</span>
+                        <span>钉钉 / Keynote</span>
+                        <span>巨量千川 / 百应 / AD</span>
+                        <span>蝉妈妈</span>
+                        <span>OBS 直播推流</span>
                     </div>
                 </div>
             </div>
@@ -500,7 +236,7 @@
                 <div class="job-desc">
                     <ul style="margin-top: 10px;">
                         <li><strong>荣誉：</strong>国家励志奖学金、英语四/六级。</li>
-                        <li><strong>竞赛：</strong>“挑战杯”大学生创业计划竞赛<strong>省级二等奖</strong>。</li>
+                        <li><strong>竞赛：</strong>"挑战杯"大学生创业计划竞赛<strong>省级二等奖</strong>、大学生创新创业训练计划项目<strong>省级立项</strong>。</li>
                         <li><strong>科研：</strong>中科院一区SCI论文<strong>两篇</strong>（第三作者）、发明专利<strong>一项</strong>。</li>
                     </ul>
                 </div>
@@ -508,113 +244,62 @@
         </section>
 
         <footer style="text-align: center; padding: 40px; color: var(--text-sub); font-size: 0.8rem;">
-            &copy; 2025 张震 Zhang Zhen. 基于 AI简历2.0 更新。
+            &copy; 2026 张震 Zhang Zhen. 专注 AI Native 产品设计.
         </footer>
     </div>
 
-    <script>
-        // --- 1. 打字机效果 ---
-        const text = "> 专注AIGC商业化落地与RAG智能体架构设计";
-        const typeWriterElement = document.getElementById('typewriter');
-        let i = 0;
+    <!-- 详情页 Overlay -->
+    <div id="project-detail-overlay">
+        <div class="detail-header">
+            <div style="display:flex; align-items:center; gap:20px;">
+                <button class="back-btn" onclick="closeProjectDetail()">← 返回主页</button>
+                <h3 id="overlay-title">创意大师工作台</h3>
+            </div>
+            <div style="color:var(--text-sub); font-size:0.8rem;">
+                Ctrl + 滚轮缩放卡片大小 | 点击卡片播放演示
+            </div>
+        </div>
 
-        function typeWriter() {
-            if (i < text.length) {
-                typeWriterElement.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        }
-        
-        setTimeout(typeWriter, 1000);
+        <div class="detail-content">
+            <div class="detail-banner">
+                <h2>创意大师</h2>
+                <p>解锁新奇创意，让视频内容"脑洞"大开</p>
+                <div style="margin-top:20px;">
+                    <button class="nav-button active">做商品素材</button>
+                    <button class="nav-button">看跑量案例</button>
+                </div>
+            </div>
 
-        // --- 2. Tab 按钮切换逻辑 ---
-        const navButtons = document.querySelectorAll('.nav-button');
-        const tabSections = document.querySelectorAll('.tab-section');
+            <div class="filter-bar">
+                <span class="filter-item active">全部</span>
+                <span class="filter-item">热门精选</span>
+                <span class="filter-item">年货节专辑</span>
+                <span class="filter-item">通用品类</span>
+                <span class="filter-item">节日氛围</span>
+                <span class="filter-item">美妆护肤</span>
+                <span class="filter-item">日化家清</span>
+                <span class="filter-item">食品饮料</span>
+            </div>
 
-        navButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const targetId = btn.getAttribute('data-target');
-                navButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                tabSections.forEach(sec => {
-                    sec.classList.toggle('active', sec.id === targetId);
-                });
+            <div class="template-grid-container" id="zoom-container">
+                <div class="template-grid" id="template-grid">
+                    <!-- 动态生成模板卡片 -->
+                </div>
+            </div>
+        </div>
+    </div>
 
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    window.scrollTo({ top: targetSection.offsetTop - 100, behavior: 'smooth' });
-                }
-            });
-        });
+    <!-- 视频播放器弹窗 (9:16 竖屏) -->
+    <div id="video-player-modal" onclick="closeVideo()">
+        <div class="video-container" onclick="event.stopPropagation()">
+            <button class="video-close-btn" onclick="closeVideo()">✕</button>
+            <video id="video-player" controls playsinline>
+                <source src="" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+        </div>
+    </div>
 
-        // --- 3. 滚动显现动画 ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.timeline-item, .skill-card').forEach(el => observer.observe(el));
-
-        // --- 4. 动态背景 Canvas ---
-        const canvas = document.getElementById('canvas-bg');
-        const ctx = canvas.getContext('2d');
-        let width, height, particles = [];
-        const particleCount = 60, connectionDistance = 150, moveSpeed = 0.5;
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * moveSpeed;
-                this.vy = (Math.random() - 0.5) * moveSpeed;
-                this.size = Math.random() * 2 + 1;
-            }
-            update() {
-                this.x += this.vx; this.y += this.vy;
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(0, 242, 234, 0.5)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = Array.from({length: particleCount}, () => new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach((p, i) => {
-                p.update(); p.draw();
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = p.x - particles[j].x, dy = p.y - particles[j].y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < connectionDistance) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 242, 234, ${1 - dist/connectionDistance})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(p.x, p.y); ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            });
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', () => { resize(); initParticles(); });
-        resize(); initParticles(); animate();
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

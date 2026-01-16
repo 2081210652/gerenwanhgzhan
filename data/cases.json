@@ -1,0 +1,79 @@
+{
+  "creativeMaster": [
+    {
+      "title": "天凉了，羽绒服湿巾可要备起来了，有了...",
+      "brand": "德佑家居清洁旗舰店直播间",
+      "logo": "德",
+      "followers": "29.5w",
+      "score": 89,
+      "days": "18天",
+      "plays3d": "14.3w",
+      "playsTotal": "921.1w",
+      "likes": "1.1w",
+      "comments": "2,300",
+      "saves": "4,279",
+      "cover": "assets/cases/case1/cover.jpg",
+      "video": "assets/cases/case1/video.mp4"
+    },
+    {
+      "title": "韩束新号开播，9.9元洁面炸不停",
+      "brand": "韩束尾品会",
+      "logo": "韩",
+      "followers": "19w",
+      "score": 81,
+      "days": "5天",
+      "plays3d": "32",
+      "playsTotal": "205.7w",
+      "likes": "3,798",
+      "comments": "318",
+      "saves": "1,374",
+      "cover": "assets/cases/case2/cover.jpg",
+      "video": "assets/cases/case2/video.mp4"
+    },
+    {
+      "title": "重新富养自己，做外在体面，内在富足的...",
+      "brand": "珀莱雅官方旗舰店",
+      "logo": "珀",
+      "followers": "1,229.5w",
+      "score": 86,
+      "days": "3天",
+      "plays3d": "34",
+      "playsTotal": "571.3w",
+      "likes": "2,653",
+      "comments": "285",
+      "saves": "795",
+      "cover": "assets/cases/case3/cover.jpg",
+      "video": "assets/cases/case3/video.mp4"
+    },
+    {
+      "title": "新年不允许有细纹！丸美胶原小金针眼膜精准狙...",
+      "brand": "丸美眼膜官方直播间",
+      "logo": "丸",
+      "followers": "21w",
+      "score": 86,
+      "days": "14天",
+      "plays3d": "15.2w",
+      "playsTotal": "567.2w",
+      "likes": "5,362",
+      "comments": "123",
+      "saves": "2,979",
+      "cover": "assets/cases/case4/cover.jpg",
+      "video": "assets/cases/case4/video.mp4"
+    },
+    {
+      "title": "懒人湿敷福音！改善粗糙闭口问题#C咖酸酶水 #...",
+      "brand": "C咖官方旗舰店油皮酸酶护...",
+      "logo": "C",
+      "followers": "22.6w",
+      "score": 82,
+      "days": "15天",
+      "plays3d": "8w",
+      "playsTotal": "223.8w",
+      "likes": "3,994",
+      "comments": "136",
+      "saves": "1,889",
+      "cover": "assets/cases/case5/cover.jpg",
+      "video": "assets/cases/case5/video.mp4"
+    }
+  ]
+}
