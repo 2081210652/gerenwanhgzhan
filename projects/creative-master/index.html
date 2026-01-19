@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>创意大师 - AIGC视频素材生产平台</title>
+    <title>创意大师 - AI爆款素材创作平台</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
-    <!-- 预加载字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- ==================== 顶部导航栏 ==================== -->
+    <!-- ==================== 顶部导航栏 (h-70px 固定) ==================== -->
     <nav class="top-nav">
         <div class="nav-left">
             <!-- Logo -->
@@ -21,260 +20,212 @@
                 <span class="logo-icon">🎨</span>
                 <span class="logo-text">创意大师</span>
             </a>
-            <!-- 导航菜单 -->
-            <div class="nav-menu">
-                <a href="#" class="nav-item active">
-                    创意大师
-                    <span class="nav-badge hot">热门素材</span>
-                </a>
-                <a href="#" class="nav-item has-dropdown">
-                    AI工具
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <a href="#" class="nav-item">创作资产</a>
-                <a href="#" class="nav-item external">蝉妈妈创意</a>
+            <!-- 产品矩阵下拉 -->
+            <div class="product-dropdown">
+                <button class="dropdown-trigger">
+                    <span class="grid-icon">⊞</span>
+                </button>
             </div>
         </div>
-        <div class="nav-right">
-            <!-- 创作记录入口 -->
-            <a href="#" class="nav-link" id="creation-history-btn">
-                <span>创作记录</span>
-                <kbd>K</kbd>
+        
+        <!-- 导航菜单 -->
+        <div class="nav-menu">
+            <a href="#" class="nav-item active">创意大师</a>
+            <a href="#" class="nav-item has-dropdown">
+                AI工具
+                <span class="dropdown-arrow">▾</span>
             </a>
-            <!-- 点数显示 -->
-            <button class="points-btn" id="points-btn">
-                <span class="points-label">点数</span>
-                <span class="points-icon">💎</span>
-                <span class="points-value" id="user-points">1,264</span>
-            </button>
-            <!-- 企业版 -->
-            <button class="enterprise-btn">企业版</button>
-            <!-- 用户头像 -->
-            <button class="user-avatar" id="user-avatar-btn">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23ddd'/%3E%3Ccircle cx='20' cy='15' r='8' fill='%23999'/%3E%3Cellipse cx='20' cy='35' rx='12' ry='10' fill='%23999'/%3E%3C/svg%3E" alt="用户头像" id="avatar-img">
-            </button>
+            <a href="#" class="nav-item has-dropdown">
+                创作资产
+                <span class="dropdown-arrow">▾</span>
+            </a>
+            <span class="nav-divider"></span>
+            <a href="#" class="nav-item external">
+                蝉妈妈创意
+                <span class="external-badge">NEW</span>
+            </a>
+        </div>
+        
+        <div class="nav-right">
+            <!-- 登录按钮 -->
+            <button class="login-btn" id="login-btn">注册/登录</button>
         </div>
     </nav>
 
-    <!-- ==================== Banner 区域 (视频轮播) ==================== -->
-    <section class="banner-section">
-        <!-- 背景视频轮播容器 -->
-        <div class="banner-bg">
-            <div class="video-carousel" id="video-carousel">
-                <!-- 
-                    📌 Banner 视频说明:
-                    视频文件位于项目根目录: F:\project-cursor\zuopinji\
-                    如果视频不播放，请启动本地服务器 (如 Live Server)
-                -->
-                <!-- 视频 1: 水头绅士 -->
-                <video class="banner-video active" muted loop playsinline data-index="0">
-                    <source src="../../1_水头绅士.mp4" type="video/mp4">
-                </video>
-                <!-- 视频 2: 花瓣舞动 -->
-                <video class="banner-video" muted loop playsinline data-index="1">
-                    <source src="../../2_花瓣舞动.mp4" type="video/mp4">
-                </video>
-                <!-- 视频 3: 舞动蘑菇 -->
-                <video class="banner-video" muted loop playsinline data-index="2">
-                    <source src="../../3_舞动蘑菇.mp4" type="video/mp4">
-                </video>
-                <!-- 视频 4: 宇航员 -->
-                <video class="banner-video" muted loop playsinline data-index="3">
-                    <source src="../../4_宇航员.mp4" type="video/mp4">
-                </video>
+    <!-- ==================== 主框架 ==================== -->
+    <div class="main-frame">
+        <!-- 右侧固定按钮组 -->
+        <div class="fixed-btns">
+            <div class="fixed-btn" id="creation-history-btn">
+                <span class="btn-text">创作记录</span>
+                <kbd>K</kbd>
             </div>
-            <!-- 渐变遮罩层 (让文字更清晰) -->
-            <div class="banner-overlay"></div>
-        </div>
-        
-        <!-- Banner 内容 -->
-        <div class="banner-content">
-            <h1 class="banner-title">创意大师</h1>
-            <p class="banner-slogan">解锁新奇创意，让视频内容"脑洞"大开</p>
-        </div>
-        
-        <!-- 轮播指示器 -->
-        <div class="carousel-indicators" id="carousel-indicators">
-            <span class="indicator active" data-index="0"></span>
-            <span class="indicator" data-index="1"></span>
-            <span class="indicator" data-index="2"></span>
-            <span class="indicator" data-index="3"></span>
-        </div>
-    </section>
-
-    <!-- ==================== 主内容区 ==================== -->
-    <main class="main-content">
-        <!-- 功能切换按钮 -->
-        <div class="mode-switcher">
-            <button class="mode-btn" data-mode="templates" id="mode-templates">
-                做商品素材
-            </button>
-            <button class="mode-btn active" data-mode="cases" id="mode-cases">
-                看跑量案例
-            </button>
         </div>
 
-        <!-- ========== 做商品素材 区域 ========== -->
-        <section class="content-section" id="templates-section" style="display: none;">
-            <!-- 品类筛选栏 -->
-            <div class="filter-bar">
-                <div class="filter-list" id="template-filters">
-                    <span class="filter-item active" data-category="all">全部</span>
-                    <span class="filter-item" data-category="hot">热门精选</span>
-                    <span class="filter-item" data-category="newyear">年货节专辑</span>
-                    <span class="filter-item" data-category="general">通用品类</span>
-                    <span class="filter-item" data-category="festival">节日氛围</span>
-                    <span class="filter-item" data-category="beauty">美妆护肤</span>
-                    <span class="filter-item" data-category="home">日化家清</span>
-                    <span class="filter-item" data-category="food">食品饮料</span>
-                    <span class="filter-item" data-category="promo">促销文字特效</span>
-                    <span class="filter-item" data-category="shoes">鞋靴服饰</span>
-                    <span class="filter-item" data-category="pet">萌宠专辑</span>
+        <!-- 滚动内容区 -->
+        <div class="scroll-container" id="scroll-container">
+            <!-- ========== Banner 视频区域 ========== -->
+            <section class="banner-section">
+                <div class="video-list">
+                    <video class="banner-video active" muted loop playsinline autoplay data-index="0">
+                        <source src="../../1_水头绅士.mp4" type="video/mp4">
+                    </video>
+                    <video class="banner-video" muted loop playsinline data-index="1">
+                        <source src="../../2_花瓣舞动.mp4" type="video/mp4">
+                    </video>
+                    <video class="banner-video" muted loop playsinline data-index="2">
+                        <source src="../../3_舞动蘑菇.mp4" type="video/mp4">
+                    </video>
+                    <video class="banner-video" muted loop playsinline data-index="3">
+                        <source src="../../4_宇航员.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <!-- 右侧操作 -->
-                <div class="filter-actions">
-                    <button class="action-btn" id="custom-template-btn">
-                        ✏️ 定制模版
-                    </button>
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1 class="banner-title">创意大师</h1>
+                    <p class="banner-slogan">解锁新奇创意，让视频内容"脑洞"大开</p>
                 </div>
-            </div>
+                <!-- 轮播指示器 -->
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                    <span class="indicator" data-index="2"></span>
+                    <span class="indicator" data-index="3"></span>
+                </div>
+            </section>
 
-            <!-- 模板卡片网格 -->
-            <div class="card-grid" id="template-grid">
-                <!-- 动态生成 -->
-            </div>
-        </section>
-
-        <!-- ========== 看跑量案例 区域 ========== -->
-        <section class="content-section" id="cases-section">
-            <!-- 多层筛选栏 -->
-            <div class="case-filter-bar">
-                <!-- 热门筛选 -->
-                <div class="filter-row">
-                    <span class="filter-label">热门筛选</span>
-                    <div class="filter-list" id="hot-filters">
-                        <span class="filter-item" data-filter="brand">品牌自营号</span>
-                        <span class="filter-item" data-filter="new">只看新发</span>
-                        <span class="filter-item" data-filter="audience">受众画像 ▼</span>
-                        <span class="filter-item" data-filter="following">只看我的追踪</span>
+            <!-- ========== 内容主体区域 ========== -->
+            <section class="content-section">
+                <!-- 粘性头部 -->
+                <div class="sticky-header">
+                    <!-- 第一行：Tab 切换 + 定制按钮 -->
+                    <div class="header-row-1">
+                        <div class="tab-switcher">
+                            <button class="tab-btn" data-mode="templates">做商品素材</button>
+                            <button class="tab-btn active" data-mode="cases">看跑量案例</button>
+                        </div>
+                        <button class="custom-btn" id="custom-template-btn">
+                            <span class="btn-icon">✏️</span>
+                            定制模版
+                        </button>
+                    </div>
+                    
+                    <!-- 第二行：筛选标签 + 操作区 -->
+                    <div class="header-row-2">
+                        <!-- 左侧筛选标签 -->
+                        <div class="filter-tags" id="filter-tags">
+                            <!-- 做商品素材 的筛选 -->
+                            <div class="filter-group templates-filters" style="display: none;">
+                                <span class="filter-tag active" data-category="all">全部</span>
+                                <span class="filter-tag" data-category="hot">热门精选</span>
+                                <span class="filter-tag" data-category="newyear">年货节专辑</span>
+                                <span class="filter-tag" data-category="general">通用品类</span>
+                                <span class="filter-tag" data-category="festival">节日氛围</span>
+                                <span class="filter-tag" data-category="beauty">美妆护肤</span>
+                                <span class="filter-tag" data-category="home">日化家清</span>
+                                <span class="filter-tag" data-category="food">食品饮料</span>
+                            </div>
+                            <!-- 看跑量案例 的筛选 -->
+                            <div class="filter-group cases-filters">
+                                <span class="filter-tag active" data-category="all">全部</span>
+                                <span class="filter-tag" data-category="beauty">美妆护肤</span>
+                                <span class="filter-tag" data-category="home">日化家清</span>
+                                <span class="filter-tag" data-category="medical">医药保健</span>
+                                <span class="filter-tag" data-category="clothing">鞋靴服饰</span>
+                                <span class="filter-tag" data-category="food">食品饮料</span>
+                                <span class="filter-tag" data-category="digital">数码3C</span>
+                                <span class="filter-tag" data-category="mother">母婴用品</span>
+                                <span class="filter-tag" data-category="pet">宠物用品</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 右侧操作区 -->
+                        <div class="header-actions">
+                            <!-- 搜索框 -->
+                            <div class="search-box">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" class="search-input" placeholder="请输入关键字">
+                            </div>
+                            <!-- 排序下拉 -->
+                            <div class="sort-dropdown">
+                                <button class="sort-btn">
+                                    <span class="sort-text">综合排序</span>
+                                    <span class="sort-arrow">▾</span>
+                                </button>
+                                <div class="sort-menu">
+                                    <div class="sort-item active" data-sort="default">综合排序</div>
+                                    <div class="sort-item" data-sort="newest">最新排序</div>
+                                    <div class="sort-item" data-sort="hottest">最热排序</div>
+                                </div>
+                            </div>
+                            <!-- 收藏复选框 -->
+                            <label class="favorite-checkbox">
+                                <input type="checkbox" id="show-favorites">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-label">我的收藏</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <!-- 品类筛选 -->
-                <div class="filter-row">
-                    <span class="filter-label">品类筛选</span>
-                    <div class="filter-list" id="category-filters">
-                        <span class="filter-item active" data-category="all">全部</span>
-                        <span class="filter-item" data-category="comprehensive">综合</span>
-                        <span class="filter-item" data-category="clothing">服饰内衣</span>
-                        <span class="filter-item" data-category="shoes">鞋靴箱包</span>
-                        <span class="filter-item" data-category="food">食品饮料</span>
-                        <span class="filter-item" data-category="beauty">美妆护肤</span>
-                        <span class="filter-item" data-category="sports">运动户外</span>
-                        <span class="filter-item" data-category="education">图书教育</span>
-                        <span class="filter-item" data-category="gifts">礼品文创</span>
-                        <span class="filter-item" data-category="fresh">生鲜蔬果</span>
-                        <span class="filter-item" data-category="flowers">鲜花绿植</span>
-                        <span class="filter-item" data-category="pet">宠物用品</span>
-                        <span class="filter-item" data-category="auto">汽配摩托</span>
+
+                <!-- 卡片网格区域 -->
+                <div class="card-grid-wrapper">
+                    <!-- 做商品素材 -->
+                    <div class="card-grid template-grid" id="template-grid" style="display: none;">
+                        <!-- 动态生成 -->
+                    </div>
+                    <!-- 看跑量案例 -->
+                    <div class="card-grid case-grid" id="case-grid">
+                        <!-- 动态生成 -->
                     </div>
                 </div>
-                <!-- 素材形式 -->
-                <div class="filter-row">
-                    <span class="filter-label">素材形式</span>
-                    <div class="filter-list" id="format-filters">
-                        <span class="filter-item active" data-format="all">全部</span>
-                        <span class="filter-item" data-format="product">商品展示</span>
-                        <span class="filter-item" data-format="single">单人出镜</span>
-                        <span class="filter-item" data-format="multi">多人演绎</span>
-                        <span class="filter-item" data-format="ai">AI创作</span>
-                        <span class="filter-item new-tag" data-format="completion">完播情况</span>
-                    </div>
-                </div>
-                <!-- 更多筛选 -->
-                <div class="filter-row">
-                    <a href="#" class="more-filters-link">更多筛选条件</a>
-                </div>
-            </div>
+            </section>
+        </div>
 
-            <!-- 排序和切换 -->
-            <div class="sort-bar">
-                <div class="tab-switch">
-                    <button class="tab-btn active" data-tab="material">素材</button>
-                    <button class="tab-btn" data-tab="creative">创意</button>
-                    <span class="tab-help">
-                        <span class="help-icon">?</span>
-                        素材与创意有什么区别?
-                    </span>
-                </div>
-                <div class="sort-options">
-                    <span class="sort-label">排序</span>
-                    <select class="sort-select" id="sort-select">
-                        <option value="time">投放时间 ▼</option>
-                        <option value="days">投放天数 ▼</option>
-                        <option value="score">跑量分 ▼</option>
-                        <option value="plays">预估播放量 ▼</option>
-                        <option value="completion">完播率 ▼</option>
-                        <option value="likes">点赞数 ▼</option>
-                    </select>
-                </div>
-                <div class="view-actions">
-                    <input type="text" class="search-input" placeholder="输入广告/达人/直播/口播文案搜关键词">
-                    <button class="action-btn">🔍 我的收藏</button>
-                </div>
+        <!-- 右侧悬浮工具 -->
+        <div class="float-tools">
+            <div class="float-tool-btn" title="联系客服">
+                <span class="tool-icon">💬</span>
             </div>
-
-            <!-- 案例卡片网格 -->
-            <div class="card-grid case-grid" id="case-grid">
-                <!-- 动态生成 -->
+            <div class="float-tool-btn" title="定制服务">
+                <span class="tool-icon">✨</span>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
 
-    <!-- ==================== 模板详情弹窗 ==================== -->
+    <!-- ==================== 弹窗区域 ==================== -->
+    <!-- 模板详情弹窗 -->
     <div class="modal-overlay" id="template-modal">
         <div class="modal-container template-detail-modal">
-            <!-- 返回按钮 -->
             <button class="modal-back-btn" onclick="closeTemplateModal()">← 返回</button>
-            
-            <!-- 右上角操作 -->
             <div class="modal-top-right">
                 <a href="#" class="creation-history-link">
                     <span>创作记录</span>
                     <kbd>K</kbd>
                 </a>
             </div>
-
             <div class="modal-content template-content">
-                <!-- 左侧: 视频预览 -->
                 <div class="preview-area">
                     <div class="video-preview-container">
-                        <video id="template-preview-video" loop muted playsinline>
-                            <source src="" type="video/mp4">
-                        </video>
+                        <video id="template-preview-video" loop muted playsinline></video>
                         <img id="template-preview-cover" src="" alt="模板预览">
                     </div>
-                    <!-- 上下切换模板 -->
                     <div class="template-nav">
                         <button class="template-nav-btn" id="prev-template">↑</button>
                         <button class="template-nav-btn" id="next-template">↓</button>
                     </div>
                 </div>
-
-                <!-- 右侧: 操作区 -->
                 <div class="operation-area">
                     <div class="template-info">
-                        <h2 class="template-name" id="modal-template-name">云朵世界（毛绒版）</h2>
+                        <h2 class="template-name" id="modal-template-name">模板名称</h2>
                         <button class="favorite-btn" id="favorite-template-btn">☆</button>
                     </div>
-                    <p class="template-desc" id="modal-template-desc">
-                        上传产品图片，变成毛茸茸效果，进入梦幻云朵世界。各品类通用。
-                    </p>
+                    <p class="template-desc" id="modal-template-desc">模板描述</p>
                     <div class="template-stats">
-                        <span class="stat-item">已生成<strong id="modal-usage-count">2,374</strong></span>
+                        <span class="stat-item">已生成<strong id="modal-usage-count">0</strong></span>
                         <span class="stat-divider">|</span>
                         <span class="stat-item ai-tag">内容由AI生成</span>
                     </div>
-
                     <div class="upload-section">
                         <div class="upload-header">
                             <span>上传产品图片</span>
@@ -296,12 +247,9 @@
                         </div>
                         <div class="recent-uploads">
                             <span class="recent-label">最近常用</span>
-                            <div class="recent-list" id="recent-uploads-list">
-                                <!-- 动态生成最近使用的图片 -->
-                            </div>
+                            <div class="recent-list" id="recent-uploads-list"></div>
                         </div>
                     </div>
-
                     <button class="generate-btn" id="generate-btn" disabled>
                         <span>制作视频</span>
                         <span class="cost-badge">预计💎 <span id="modal-cost">120</span></span>
@@ -312,109 +260,93 @@
         </div>
     </div>
 
-    <!-- ==================== 案例详情弹窗 ==================== -->
+    <!-- 案例详情弹窗 -->
     <div class="modal-overlay" id="case-modal">
         <div class="modal-container case-detail-modal">
-            <!-- 关闭按钮 -->
             <button class="modal-close-btn" onclick="closeCaseModal()">✕</button>
-
             <div class="modal-content case-content">
-                <!-- 左侧: 视频播放器 (抖音样式) -->
                 <div class="video-player-area">
                     <div class="platform-selector">
                         <span class="platform-item active">抖音</span>
                         <span class="platform-dropdown">▼</span>
                     </div>
                     <div class="douyin-video-frame">
-                        <video id="case-video-player" controls playsinline>
-                            <source src="" type="video/mp4">
-                        </video>
-                        <!-- 右侧互动栏 -->
+                        <video id="case-video-player" controls playsinline></video>
                         <div class="video-interaction-bar">
                             <div class="interaction-item">
                                 <span class="interaction-icon">❤️</span>
-                                <span class="interaction-count" id="video-likes">305</span>
+                                <span class="interaction-count" id="video-likes">0</span>
                             </div>
                             <div class="interaction-item">
                                 <span class="interaction-icon">💬</span>
-                                <span class="interaction-count" id="video-comments">1690</span>
+                                <span class="interaction-count" id="video-comments">0</span>
                             </div>
                             <div class="interaction-item">
                                 <span class="interaction-icon">⭐</span>
-                                <span class="interaction-count" id="video-saves">556</span>
+                                <span class="interaction-count" id="video-saves">0</span>
                             </div>
                             <div class="interaction-item">
                                 <span class="interaction-icon">↗️</span>
                                 <span class="interaction-count">分享</span>
                             </div>
                         </div>
-                        <!-- 底部信息 -->
                         <div class="video-bottom-info">
                             <div class="author-info">
                                 <span class="author-tag">@</span>
-                                <span class="author-name" id="video-author">Clarins娇韵诗</span>
+                                <span class="author-name" id="video-author">作者</span>
                             </div>
-                            <p class="video-title-overlay" id="video-title-overlay">跃马迎春，驭时新生...</p>
+                            <p class="video-title-overlay" id="video-title-overlay">标题</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- 右侧: 数据详情 -->
                 <div class="case-detail-area">
-                    <!-- 顶部操作 -->
                     <div class="detail-actions">
                         <button class="action-btn outline">📤 分享</button>
                         <button class="action-btn outline">☆ 收藏</button>
                     </div>
-
-                    <!-- 标题和基本信息 -->
-                    <h2 class="case-title" id="modal-case-title">跃马迎春，驭时新生，娇韵诗「黄金双萃」马年限定，与您一同开启焕彩新程！</h2>
+                    <h2 class="case-title" id="modal-case-title">案例标题</h2>
                     <div class="case-meta">
-                        <span>素材形式: <strong id="case-material-type">商品展示-无口播</strong></span>
-                        <span>素材尺寸: <strong id="case-size">720*1280</strong></span>
-                        <span>发现设备: <strong id="case-device">Android</strong></span>
+                        <span>素材形式: <strong id="case-material-type">-</strong></span>
+                        <span>素材尺寸: <strong id="case-size">-</strong></span>
+                        <span>发现设备: <strong id="case-device">-</strong></span>
                     </div>
                     <div class="case-author-row">
                         <span class="label">投放达人</span>
-                        <a href="#" class="author-link" id="case-author-link">Clarins娇韵诗</a>
+                        <a href="#" class="author-link" id="case-author-link">-</a>
                     </div>
-
-                    <!-- 核心数据卡片 -->
                     <div class="stats-grid">
                         <div class="stat-card highlight">
-                            <div class="stat-value" id="case-score">90</div>
+                            <div class="stat-value" id="case-score">0</div>
                             <div class="stat-label">跑量分 <span class="info-icon">ⓘ</span></div>
                             <div class="stat-sub">超过99%同类素材</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-value" id="case-days">2天</div>
+                            <div class="stat-value" id="case-days">0天</div>
                             <div class="stat-label">投放天数 <span class="info-icon">ⓘ</span></div>
-                            <div class="stat-sub" id="case-date-range">25/12/11-25/12/17</div>
+                            <div class="stat-sub" id="case-date-range">-</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-value" id="case-plays-3d">338.5w</div>
+                            <div class="stat-value" id="case-plays-3d">0</div>
                             <div class="stat-label">近3日预估播放量</div>
-                            <div class="stat-sub">预估总播放量 <strong id="case-plays-total">1,032.8w</strong></div>
+                            <div class="stat-sub">预估总播放量 <strong id="case-plays-total">0</strong></div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-value" id="case-completion">3.49%</div>
+                            <div class="stat-value" id="case-completion">0%</div>
                             <div class="stat-label">5秒完播率</div>
-                            <div class="stat-sub">完播率 <strong id="case-full-completion">0.83%</strong></div>
+                            <div class="stat-sub">完播率 <strong id="case-full-completion">0%</strong></div>
                         </div>
                     </div>
-
-                    <!-- 互动数据 -->
                     <div class="stats-grid secondary">
                         <div class="stat-card small">
-                            <div class="stat-value" id="case-likes">6,190</div>
+                            <div class="stat-value" id="case-likes">0</div>
                             <div class="stat-label">点赞数</div>
                         </div>
                         <div class="stat-card small">
-                            <div class="stat-value" id="case-comments">130</div>
+                            <div class="stat-value" id="case-comments">0</div>
                             <div class="stat-label">评论数</div>
                         </div>
                         <div class="stat-card small">
-                            <div class="stat-value" id="case-saves">556</div>
+                            <div class="stat-value" id="case-saves">0</div>
                             <div class="stat-label">收藏数</div>
                         </div>
                         <div class="stat-card small">
@@ -422,29 +354,22 @@
                             <div class="stat-label">受众画像</div>
                         </div>
                     </div>
-
-                    <!-- AI 功能按钮 -->
                     <div class="ai-tools">
                         <button class="ai-tool-btn" onclick="showFeatureToast('提取文案')">📝 提取文案</button>
                         <button class="ai-tool-btn" onclick="showFeatureToast('智能仿号')">🎯 智能仿号</button>
                         <button class="ai-tool-btn primary" onclick="showFeatureToast('智能拉片')">🎬 智能拉片</button>
                         <button class="ai-tool-btn primary" onclick="showFeatureToast('智能编导')">🔍 智能编导</button>
                     </div>
-
-                    <!-- 数据分析 Tab -->
                     <div class="analysis-tabs">
                         <button class="analysis-tab active" data-tab="basic">基础分析</button>
                         <button class="analysis-tab" data-tab="audience">受众画像</button>
                         <button class="analysis-tab" data-tab="related">关联信息</button>
                     </div>
-
-                    <!-- 趋势图表区 -->
                     <div class="charts-area">
                         <div class="chart-container">
                             <h4 class="chart-title">近7日预估播放量趋势</h4>
                             <p class="chart-subtitle">时间周期为01/10-01/16，每日12:00更新数据</p>
-                            <div class="chart-placeholder" id="plays-chart">
-                                <!-- 📌 可接入 ECharts 等图表库 -->
+                            <div class="chart-placeholder">
                                 <div class="mock-chart">
                                     <div class="chart-bar" style="height: 30%"></div>
                                     <div class="chart-bar" style="height: 50%"></div>
@@ -459,7 +384,7 @@
                         <div class="chart-container">
                             <h4 class="chart-title">近7天投放创意数趋势</h4>
                             <p class="chart-subtitle">时间周期为01/10-01/15，每日12:00更新数据</p>
-                            <div class="chart-placeholder" id="creative-chart">
+                            <div class="chart-placeholder">
                                 <div class="chart-line">
                                     <svg viewBox="0 0 200 80" class="line-svg">
                                         <polyline points="0,60 30,55 60,50 90,45 120,40 150,35 180,30" fill="none" stroke="#FF6B35" stroke-width="2"/>
@@ -474,15 +399,12 @@
         </div>
     </div>
 
-    <!-- ==================== 登录弹窗 ==================== -->
+    <!-- 登录弹窗 -->
     <div class="modal-overlay" id="login-modal">
         <div class="modal-container login-modal">
             <button class="modal-close-btn" onclick="closeLoginModal()">✕</button>
-            
             <div class="login-content">
-                <h2 class="login-title" id="auth-title">登录</h2>
-                
-                <!-- 登录表单 -->
+                <h2 class="login-title">登录</h2>
                 <form class="auth-form" id="login-form">
                     <div class="form-group">
                         <label>手机号</label>
@@ -493,78 +415,24 @@
                         <input type="text" id="code-input" placeholder="请输入验证码" maxlength="6">
                         <button type="button" class="get-code-btn" id="get-code-btn">获取验证码</button>
                     </div>
-                    <button type="submit" class="submit-btn" id="login-submit-btn">登 录</button>
+                    <button type="submit" class="submit-btn">登 录</button>
                 </form>
-
                 <div class="auth-footer">
                     <span>还没有账号？</span>
-                    <a href="#" id="switch-to-register">立即注册</a>
+                    <a href="#">立即注册</a>
                 </div>
-
                 <div class="auth-agreement">
                     <label class="checkbox-label">
                         <input type="checkbox" id="agreement-checkbox">
                         <span>我已阅读并同意</span>
                     </label>
-                    <a href="#">《用户协议》</a>
-                    <span>和</span>
-                    <a href="#">《隐私政策》</a>
+                    <a href="#">《用户协议》</a>和<a href="#">《隐私政策》</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== 充值弹窗 ==================== -->
-    <div class="modal-overlay" id="recharge-modal">
-        <div class="modal-container recharge-modal">
-            <button class="modal-close-btn" onclick="closeRechargeModal()">✕</button>
-            
-            <div class="recharge-content">
-                <h2 class="recharge-title">充值点数</h2>
-                <div class="current-points">
-                    当前点数: <span class="points-highlight">💎 <span id="recharge-current-points">1,264</span></span>
-                </div>
-
-                <div class="package-grid">
-                    <div class="package-card" data-points="100" data-price="10">
-                        <div class="package-points">100点</div>
-                        <div class="package-price">¥10</div>
-                    </div>
-                    <div class="package-card" data-points="500" data-price="45">
-                        <div class="package-points">500点</div>
-                        <div class="package-price">¥45</div>
-                        <span class="package-badge">热门</span>
-                    </div>
-                    <div class="package-card selected" data-points="1000" data-price="80">
-                        <div class="package-points">1000点</div>
-                        <div class="package-price">¥80</div>
-                        <span class="package-badge save">省20</span>
-                    </div>
-                    <div class="package-card" data-points="5000" data-price="350">
-                        <div class="package-points">5000点</div>
-                        <div class="package-price">¥350</div>
-                        <span class="package-badge save">省50</span>
-                    </div>
-                </div>
-
-                <button class="recharge-btn" id="recharge-submit-btn">立即充值</button>
-
-                <div class="payment-methods">
-                    <span>支付方式:</span>
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="wechat" checked>
-                        <span>微信</span>
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="alipay">
-                        <span>支付宝</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== 生成中弹窗 ==================== -->
+    <!-- 生成中弹窗 -->
     <div class="modal-overlay" id="generating-modal">
         <div class="modal-container generating-modal">
             <div class="generating-content">
@@ -580,10 +448,13 @@
         </div>
     </div>
 
-    <!-- ==================== Toast 提示 ==================== -->
+    <!-- Toast 提示 -->
     <div class="toast-container" id="toast-container"></div>
 
-    <!-- ==================== 脚本 ==================== -->
+    <!-- 缩放提示 -->
+    <div class="column-hint" id="scale-hint"></div>
+
+    <!-- 脚本 -->
     <script src="js/app.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/cases.js"></script>

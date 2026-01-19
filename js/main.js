@@ -3,7 +3,7 @@
    ============================================ */
 
 // --- 1. 打字机效果 ---
-const text = "> 专注AIGC落地与RAG智能体架构设计 | AI Native思维践行者";
+const text = "> 2年工作经验 | 求职意向：AI产品经理";
 const typeWriterElement = document.getElementById('typewriter');
 let i = 0;
 
@@ -17,7 +17,91 @@ function typeWriter() {
 
 setTimeout(typeWriter, 1000);
 
-// --- 2. Tab 按钮切换逻辑 ---
+// --- 2. 作品集项目渲染 ---
+const portfolioGrid = document.getElementById('portfolio-grid');
+const portfolioFallback = [
+    {
+        id: 'creative-master',
+        title: '"创意大师" AIGC 视频生产项目',
+        desc: '从0到1负责的项目，首月付费用户突破3000+，支撑品牌方产出百万播放级素材。',
+        icon: '🎬',
+        url: 'projects/creative-master/index.html',
+        independent: true,
+        tags: ['AIGC 商业化', 'Veo3 引擎', '全链路闭环']
+    },
+    {
+        id: 'zhiji-rag',
+        title: '"知稷" RAG 智能体平台',
+        desc: '针对粮食行业术语优化的 RAG 系统。通过意图改写将检索准确率从 65% 提升至 90%。',
+        icon: '🌾',
+        status: 'coming_soon',
+        tags: ['RAG 调优', 'Dify / Coze', '数据清洗']
+    },
+    {
+        id: 'workflow-automation',
+        title: '电商素材自动化生产工作流',
+        desc: '基于 n8n 与 Dify 开发的自动化系统，实现单条视频脚本生产时间缩短 90% 以上。',
+        icon: '⚙️',
+        status: 'coming_soon',
+        tags: ['n8n', '工作流自动化', '降本增效']
+    }
+];
+
+async function loadPortfolioProjects() {
+    if (!portfolioGrid) return;
+    try {
+        const response = await fetch('data/projects.json');
+        if (!response.ok) throw new Error('projects.json 加载失败');
+        const data = await response.json();
+        const projects = Array.isArray(data) ? data : (data.projects || []);
+        renderPortfolioProjects(projects.length ? projects : portfolioFallback);
+    } catch (error) {
+        console.warn('作品集数据加载失败，使用内置数据', error);
+        renderPortfolioProjects(portfolioFallback);
+    }
+}
+
+function renderPortfolioProjects(projects) {
+    if (!portfolioGrid) return;
+    portfolioGrid.innerHTML = '';
+    projects.forEach(project => {
+        const card = document.createElement('div');
+        const isDisabled = project.status === 'coming_soon';
+        card.className = `card portfolio-card${isDisabled ? ' disabled' : ''}`;
+
+        card.innerHTML = `
+            <div class="portfolio-img-placeholder">${project.icon || '📁'}</div>
+            <h3 style="margin-bottom:10px;">${project.title}</h3>
+            <p style="font-size:0.9rem; color:var(--text-sub); flex-grow:1;">
+                ${project.desc || ''}
+                ${project.url && !isDisabled ? '<strong style="color:var(--primary)">点击进入完整项目演示 →</strong>' : ''}
+            </p>
+            <div class="tags" style="margin-top:15px;">
+                ${(project.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                ${project.independent ? '<span class="tag tag-primary">独立项目</span>' : ''}
+                ${isDisabled ? '<span class="tag tag-muted">即将上线</span>' : ''}
+            </div>
+        `;
+
+        if (!isDisabled && project.url) {
+            card.addEventListener('click', () => openPortfolioProject(project));
+        }
+
+        portfolioGrid.appendChild(card);
+    });
+}
+
+function openPortfolioProject(project) {
+    if (!project || !project.url) return;
+    const openInNewTab = project.openInNewTab !== false;
+    if (openInNewTab) {
+        window.open(project.url, '_blank');
+    } else {
+        window.location.href = project.url;
+    }
+}
+
+// --- 3. Tab 按钮切换逻辑 ---
 const navButtons = document.querySelectorAll('.nav-button');
 const tabSections = document.querySelectorAll('.tab-section');
 
@@ -40,7 +124,10 @@ navButtons.forEach(btn => {
     });
 });
 
-// --- 3. 详情页 Overlay 逻辑 ---
+// 初始化作品集项目数据
+loadPortfolioProjects();
+
+// --- 4. 详情页 Overlay 逻辑 ---
 const overlay = document.getElementById('project-detail-overlay');
 const templateGrid = document.getElementById('template-grid');
 const zoomContainer = document.getElementById('zoom-container');
@@ -216,7 +303,7 @@ overlay.addEventListener('wheel', (e) => {
     }
 }, { passive: false });
 
-// --- 4. 视频播放器逻辑 ---
+// --- 5. 视频播放器逻辑 ---
 const videoModal = document.getElementById('video-player-modal');
 const videoPlayer = document.getElementById('video-player');
 
@@ -232,7 +319,7 @@ function closeVideo() {
     videoModal.style.display = 'none'; 
 }
 
-// --- 5. 滚动显现动画 ---
+// --- 6. 滚动显现动画 ---
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -241,7 +328,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.timeline-item, .skill-card').forEach(el => observer.observe(el));
 
-// --- 6. 动态背景 Canvas ---
+// --- 7. 动态背景 Canvas ---
 const canvas = document.getElementById('canvas-bg');
 const ctx = canvas.getContext('2d');
 let width, height, particles = [];

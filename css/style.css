@@ -276,6 +276,18 @@ section {
     border: 1px solid rgba(112, 0, 255, 0.3);
 }
 
+.tag-primary {
+    background: var(--primary);
+    color: #0a0a12;
+    border-color: var(--primary);
+}
+
+.tag-muted {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-sub);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
 .job-desc ul {
     list-style: none;
 }
@@ -308,6 +320,11 @@ section {
     height: 100%;
     position: relative;
     overflow: hidden;
+}
+
+.portfolio-card.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .portfolio-img-placeholder {

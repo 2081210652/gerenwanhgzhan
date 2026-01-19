@@ -13,125 +13,12 @@
 //    - case-3.mp4
 //    - case-4.mp4
 //    - case-5.mp4
-//    然后放在项目根目录 F:\project-cursor\zuopinji\
+//    然后放在 projects/creative-master/assets/cases/
 // ============================================
 const casesData = [
+    // case-1.mp4 → 德佑
     {
         id: 'case-001',
-        title: '跃马迎春，驭时新生，娇韵诗「黄金双萃」马年限定，与您一同开启焕彩新程！',
-        brand: 'Clarins娇韵诗',
-        brandLogo: 'C',
-        followers: '304.9w',
-        score: 90,
-        launchDays: 2,
-        launchDateRange: '25/12/17-25/12/11',
-        plays3d: '338.5w',
-        playsTotal: '1,032.8w',
-        likes: 6190,
-        comments: 130,
-        saves: 556,
-        cover: 'assets/cases/case-001/cover.jpg',
-        video: '../../case-1.mp4',  // 请手动重命名
-        category: 'beauty',
-        format: 'product'
-    },
-    {
-        id: 'case-002',
-        title: '这种气血充盈的美随便一涂不就来了吗 #口红试色...',
-        brand: '欧莱雅OULAJIA官方旗舰店',
-        brandLogo: '欧',
-        followers: '78.4w',
-        score: 82,
-        launchDays: 24,
-        launchDateRange: '24/12/01-24/12/25',
-        plays3d: '42.3w',
-        playsTotal: '290.3w',
-        likes: 4838,
-        comments: 145,
-        saves: 2630,
-        cover: 'assets/cases/case-002/cover.jpg',
-        video: '../../case-2.mp4',  // 请手动重命名
-        category: 'beauty',
-        format: 'product'
-    },
-    {
-        id: 'case-003',
-        title: '熬夜数据把它推荐 #毛乳头头发多头皮脱的...',
-        brand: '大云白云山甄生活旗舰店',
-        brandLogo: '云',
-        followers: '111.2w',
-        score: 81,
-        launchDays: 6,
-        launchDateRange: '25/01/05-25/01/11',
-        plays3d: '12.3w',
-        playsTotal: '146.8w',
-        likes: 1832,
-        comments: 53,
-        saves: 427,
-        cover: 'assets/cases/case-003/cover.jpg',
-        video: '../../case-3.mp4',  // 请手动重命名
-        category: 'beauty',
-        format: 'single'
-    },
-    {
-        id: 'case-004',
-        title: '你们都多久没洗羽绒服了 有了这个 #羽绒服蓬...',
-        brand: '水卫士家居生活旗舰店',
-        brandLogo: '水',
-        followers: '32w',
-        score: 59,
-        launchDays: 37,
-        launchDateRange: '24/11/20-24/12/27',
-        plays3d: '3,528',
-        playsTotal: '44.6w',
-        likes: 425,
-        comments: 5,
-        saves: 227,
-        cover: 'assets/cases/case-004/cover.jpg',
-        video: '../../case-4.mp4',  // 请手动重命名
-        category: 'home',
-        format: 'product'
-    },
-    {
-        id: 'case-005',
-        title: '白发困扰不再有！魔法美发棒，轻松遮盖，自然...',
-        brand: '魔发美妆小叶精品店',
-        brandLogo: '魔',
-        followers: '32.8w',
-        score: 73,
-        launchDays: 7,
-        launchDateRange: '25/01/04-25/01/11',
-        plays3d: '48.6w',
-        playsTotal: '83w',
-        likes: 437,
-        comments: 4,
-        saves: 274,
-        cover: 'assets/cases/case-005/cover.jpg',
-        video: '../../case-5.mp4',  // 请手动重命名
-        category: 'beauty',
-        format: 'single'
-    },
-    {
-        id: 'case-006',
-        title: '全体注意！这不是广子，是行走的种机！亲...',
-        brand: '苏宁官方旗舰店',
-        brandLogo: '苏',
-        followers: '1,290.1w',
-        score: 73,
-        launchDays: 7,
-        launchDateRange: '25/01/04-25/01/11',
-        plays3d: '4.1w',
-        playsTotal: '75.4w',
-        likes: 835,
-        comments: 29,
-        saves: 268,
-        cover: 'assets/cases/case-006/cover.jpg',
-        video: 'assets/cases/case-006/video.mp4',
-        category: 'comprehensive',
-        format: 'multi'
-    },
-    {
-        id: 'case-007',
         title: '天凉了，羽绒服湿巾可要备起来了，有了...',
         brand: '德佑家居清洁旗舰店直播间',
         brandLogo: '德',
@@ -144,13 +31,34 @@ const casesData = [
         likes: 11000,
         comments: 2300,
         saves: 4279,
-        cover: 'assets/cases/case-007/cover.jpg',
-        video: 'assets/cases/case-007/video.mp4',
+        cover: '',
+        video: 'assets/cases/case-1.mp4',
         category: 'home',
         format: 'product'
     },
+    // case-2.mp4 → 珀莱雅 (截图信息)
     {
-        id: 'case-008',
+        id: 'case-002',
+        title: '重新富养自己，做外在体面，内在富足的自己，...',
+        brand: '珀莱雅官方旗舰店',
+        brandLogo: '珀',
+        followers: '1,231.9w',
+        score: 86,
+        launchDays: 3,
+        launchDateRange: '25/01/14-25/01/17',
+        plays3d: '34',
+        playsTotal: '571.3w',
+        likes: 2653,
+        comments: 285,
+        saves: 795,
+        cover: '',
+        video: 'assets/cases/case-2.mp4',
+        category: 'beauty',
+        format: 'product'
+    },
+    // case-3.mp4 → 韩束
+    {
+        id: 'case-003',
         title: '韩束新号开播，9.9元洁面炸不停',
         brand: '韩束尾品会',
         brandLogo: '韩',
@@ -163,8 +71,48 @@ const casesData = [
         likes: 3798,
         comments: 318,
         saves: 1374,
-        cover: 'assets/cases/case-008/cover.jpg',
-        video: 'assets/cases/case-008/video.mp4',
+        cover: '',
+        video: 'assets/cases/case-3.mp4',
+        category: 'beauty',
+        format: 'product'
+    },
+    // case-4.mp4 → 丸美眼膜
+    {
+        id: 'case-004',
+        title: '新年不允许有细纹！丸美胶原小金针眼膜精准狙击眼周细纹...',
+        brand: '丸美眼膜官方直播间',
+        brandLogo: '丸',
+        followers: '21w',
+        score: 86,
+        launchDays: 14,
+        launchDateRange: '24/12/28-25/01/11',
+        plays3d: '15.2w',
+        playsTotal: '567.2w',
+        likes: 5362,
+        comments: 123,
+        saves: 2979,
+        cover: '',
+        video: 'assets/cases/case-4.mp4',
+        category: 'beauty',
+        format: 'product'
+    },
+    // case-5.mp4 → C咖
+    {
+        id: 'case-005',
+        title: '懒人湿敷福音！改善粗糙闭口问题 #C咖酸酶水 #油皮护肤...',
+        brand: 'C咖官方旗舰店',
+        brandLogo: 'C',
+        followers: '22.6w',
+        score: 82,
+        launchDays: 15,
+        launchDateRange: '24/12/27-25/01/11',
+        plays3d: '8w',
+        playsTotal: '223.8w',
+        likes: 3994,
+        comments: 136,
+        saves: 1889,
+        cover: '',
+        video: 'assets/cases/case-5.mp4',
         category: 'beauty',
         format: 'product'
     }
