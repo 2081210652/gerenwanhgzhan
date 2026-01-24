@@ -731,6 +731,24 @@ input {
     zoom: var(--zoom);
 }
 
+/* 案例网格 - 适应小卡片和正常卡片混排 */
+.case-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+/* 小卡片占1列 */
+.case-card-small {
+    grid-column: span 1;
+}
+
+/* 普通卡片占1列 */
+.case-card:not(.case-card-small) {
+    grid-column: span 1;
+}
+
 /* ==============================================
    缩放提示
    ============================================== */

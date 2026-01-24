@@ -1337,3 +1337,63 @@
         transform: rotate(360deg);
     }
 }
+
+/* === 小卡片样式（创意盲盒） === */
+.case-card-small {
+    max-width: 200px;
+}
+
+.case-card-small .card-media {
+    aspect-ratio: 3 / 4;
+}
+
+.case-card-small .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.case-card-small .card-content-simple {
+    padding: 12px;
+    background: linear-gradient(135deg, #1a1a3e, #2d2d5a);
+    color: white;
+}
+
+.case-card-small .card-title {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.case-card-small .template-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    transition: background 0.2s ease;
+}
+
+.case-card-small .template-action:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.case-card-small .action-arrow {
+    font-size: 12px;
+}
+
+/* 图片卡片通用样式 */
+.case-card .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 简化内容区域 */
+.card-content-simple {
+    padding: 12px;
+}
