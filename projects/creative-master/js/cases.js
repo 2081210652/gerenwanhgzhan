@@ -4,131 +4,115 @@
  */
 
 // ============================================
-// 案例数据 - 6张展示卡片
-// 2个创意盲盒（图片，小卡片）+ 4个视频案例（正常大小）
+// 案例数据 (可替换为 fetch 从 JSON 加载)
+// 📌 重要：请手动重命名视频文件！
+//    原文件名含有特殊字符无法正常加载
+//    请将视频按时间顺序重命名为：
+//    - case-1.mp4 (最早下载的)
+//    - case-2.mp4
+//    - case-3.mp4
+//    - case-4.mp4
+//    - case-5.mp4
+//    然后放在 projects/creative-master/assets/cases/
 // ============================================
 const casesData = [
-    // 创意盲盒 - 有声版（图片，小卡片）
+    // case-1.mp4 → 德佑
     {
         id: 'case-001',
-        title: '创意盲盒-有声版',
-        brand: '创意大师',
-        brandLogo: '盲',
-        followers: '-',
-        score: 95,
-        launchDays: '-',
-        launchDateRange: '-',
-        plays3d: '-',
-        playsTotal: '-',
-        likes: '-',
-        comments: '-',
-        saves: '-',
-        cover: '../../创意盲盒-use.webp',
-        video: '',
-        category: 'hot',
-        format: 'template',
-        isSmall: true,
-        isImage: true
+        title: '天凉了，羽绒服湿巾可要备起来了，有了...',
+        brand: '德佑家居清洁旗舰店直播间',
+        brandLogo: '德',
+        followers: '29.5w',
+        score: 89,
+        launchDays: 18,
+        launchDateRange: '24/12/20-25/01/07',
+        plays3d: '14.3w',
+        playsTotal: '921.1w',
+        likes: 11000,
+        comments: 2300,
+        saves: 4279,
+        cover: '',
+        video: 'assets/cases/case-1.mp4',
+        category: 'home',
+        format: 'product'
     },
-    // 创意盲盒 - 无声版（图片，小卡片）
+    // case-2.mp4 → 珀莱雅 (截图信息)
     {
         id: 'case-002',
-        title: '创意盲盒',
-        brand: '创意大师',
-        brandLogo: '盲',
-        followers: '-',
-        score: 92,
-        launchDays: '-',
-        launchDateRange: '-',
-        plays3d: '-',
-        playsTotal: '-',
-        likes: '-',
-        comments: '-',
-        saves: '-',
-        cover: '../../创意盲盒无声版-use.webp',
-        video: '',
-        category: 'hot',
-        format: 'template',
-        isSmall: true,
-        isImage: true
-    },
-    // 小人搅拌（视频，正常大小）
-    {
-        id: 'case-003',
-        title: '小人搅拌',
-        brand: '创意大师',
-        brandLogo: '搅',
-        followers: '-',
-        score: 88,
-        launchDays: '-',
-        launchDateRange: '-',
-        plays3d: '-',
-        playsTotal: '-',
-        likes: '-',
-        comments: '-',
-        saves: '-',
+        title: '重新富养自己，做外在体面，内在富足的自己，...',
+        brand: '珀莱雅官方旗舰店',
+        brandLogo: '珀',
+        followers: '1,231.9w',
+        score: 86,
+        launchDays: 3,
+        launchDateRange: '25/01/14-25/01/17',
+        plays3d: '34',
+        playsTotal: '571.3w',
+        likes: 2653,
+        comments: 285,
+        saves: 795,
         cover: '',
-        video: '../../小人搅拌-use.mp4',
-        category: 'general',
-        format: 'product'
-    },
-    // 涂满奶油（视频，正常大小）
-    {
-        id: 'case-004',
-        title: '涂满奶油',
-        brand: '创意大师',
-        brandLogo: '奶',
-        followers: '-',
-        score: 90,
-        launchDays: '-',
-        launchDateRange: '-',
-        plays3d: '-',
-        playsTotal: '-',
-        likes: '-',
-        comments: '-',
-        saves: '-',
-        cover: '',
-        video: '../../涂满奶油-use.mp4',
-        category: 'food',
-        format: 'product'
-    },
-    // 迷你珐斑师（视频，正常大小）
-    {
-        id: 'case-005',
-        title: '迷你珐斑师',
-        brand: '创意大师',
-        brandLogo: '珐',
-        followers: '-',
-        score: 87,
-        launchDays: '-',
-        launchDateRange: '-',
-        plays3d: '-',
-        playsTotal: '-',
-        likes: '-',
-        comments: '-',
-        saves: '-',
-        cover: '',
-        video: '../../迷你珐斑师-use.mp4',
+        video: 'assets/cases/case-2.mp4',
         category: 'beauty',
         format: 'product'
     },
-    // 迷你美白专家（视频，正常大小）
+    // case-3.mp4 → 韩束
     {
-        id: 'case-006',
-        title: '迷你美白专家',
-        brand: '创意大师',
-        brandLogo: '白',
-        followers: '-',
-        score: 89,
-        launchDays: '-',
-        launchDateRange: '-',
-        plays3d: '-',
-        playsTotal: '-',
-        likes: '-',
-        comments: '-',
-        saves: '-',
+        id: 'case-003',
+        title: '韩束新号开播，9.9元洁面炸不停',
+        brand: '韩束尾品会',
+        brandLogo: '韩',
+        followers: '19w',
+        score: 81,
+        launchDays: 5,
+        launchDateRange: '25/01/06-25/01/11',
+        plays3d: '32',
+        playsTotal: '205.7w',
+        likes: 3798,
+        comments: 318,
+        saves: 1374,
         cover: '',
-        video: '../../迷你美白专家-use.mp4',
+        video: 'assets/cases/case-3.mp4',
+        category: 'beauty',
+        format: 'product'
+    },
+    // case-4.mp4 → 丸美眼膜
+    {
+        id: 'case-004',
+        title: '新年不允许有细纹！丸美胶原小金针眼膜精准狙击眼周细纹...',
+        brand: '丸美眼膜官方直播间',
+        brandLogo: '丸',
+        followers: '21w',
+        score: 86,
+        launchDays: 14,
+        launchDateRange: '24/12/28-25/01/11',
+        plays3d: '15.2w',
+        playsTotal: '567.2w',
+        likes: 5362,
+        comments: 123,
+        saves: 2979,
+        cover: '',
+        video: 'assets/cases/case-4.mp4',
+        category: 'beauty',
+        format: 'product'
+    },
+    // case-5.mp4 → C咖
+    {
+        id: 'case-005',
+        title: '懒人湿敷福音！改善粗糙闭口问题 #C咖酸酶水 #油皮护肤...',
+        brand: 'C咖官方旗舰店',
+        brandLogo: 'C',
+        followers: '22.6w',
+        score: 82,
+        launchDays: 15,
+        launchDateRange: '24/12/27-25/01/11',
+        plays3d: '8w',
+        playsTotal: '223.8w',
+        likes: 3994,
+        comments: 136,
+        saves: 1889,
+        cover: '',
+        video: 'assets/cases/case-5.mp4',
         category: 'beauty',
         format: 'product'
     }
@@ -145,61 +129,71 @@ function renderCases(cases) {
     const grid = document.getElementById('case-grid');
     if (!grid) return;
     
-    grid.innerHTML = cases.map((caseItem, index) => {
-        // 判断是图片还是视频
-        const isImage = caseItem.isImage || false;
-        const isSmall = caseItem.isSmall || false;
-        const cardClass = `case-card card-enter${isSmall ? ' case-card-small' : ''}`;
-        
-        // 媒体区域：图片或视频
-        const mediaContent = isImage ? `
-            <img class="card-image" src="${caseItem.cover}" alt="${caseItem.title}">
-        ` : `
-            <video class="card-video" 
-                   src="${caseItem.video}" 
-                   muted 
-                   loop 
-                   playsinline
-                   preload="metadata"></video>
-            <div class="play-btn">▶</div>
-        `;
-        
-        // 简化内容区域（模版卡片不显示详细数据）
-        const contentArea = isImage ? `
-            <div class="card-content card-content-simple">
-                <h3 class="card-title">${caseItem.title}</h3>
-                <div class="template-action">
-                    <span class="action-text">随机灵感</span>
-                    <span class="action-arrow">→</span>
-                </div>
-            </div>
-        ` : `
-            <div class="card-content">
-                <h3 class="card-title">${caseItem.title}</h3>
-            </div>
-        `;
-        
-        return `
-        <div class="${cardClass}" 
+    grid.innerHTML = cases.map((caseItem, index) => `
+        <div class="case-card card-enter" 
              data-id="${caseItem.id}"
              data-category="${caseItem.category}"
              data-format="${caseItem.format}"
              data-score="${caseItem.score}"
+             data-plays="${parseNumberString(caseItem.playsTotal)}"
+             data-likes="${caseItem.likes}"
              data-index="${index}">
             
-            <div class="card-media" onclick="${isImage ? '' : `playCaseVideo(${index})`}">
-                ${mediaContent}
-                ${!isImage ? `
+            <!-- 视频区域 - 使用视频第一帧作为封面 -->
+            <div class="card-media" onclick="playCaseVideo(${index})">
+                <video class="card-video" 
+                       src="${caseItem.video}" 
+                       muted 
+                       loop 
+                       playsinline
+                       preload="metadata"></video>
+                <div class="play-btn">▶</div>
                 <div class="score-badge">
                     <span class="score-label">跑量分</span>
                     <span class="score-value">${caseItem.score}</span>
                 </div>
-                ` : ''}
             </div>
             
-            ${contentArea}
+            <!-- 内容区域 (点击打开详情) -->
+            <div class="card-content" onclick="handleCaseClick(${index})">
+                <h3 class="card-title">${caseItem.title}</h3>
+                
+                <div class="brand-info">
+                    <span class="brand-logo">${caseItem.brandLogo}</span>
+                    <span class="brand-name">${caseItem.brand}</span>
+                    <span class="brand-followers">粉丝数:${caseItem.followers}</span>
+                </div>
+                
+                <div class="metrics">
+                    <div class="metric-row">
+                        <span class="metric-label">投放天数:</span>
+                        <span class="metric-value">${caseItem.launchDays}天</span>
+                        <span class="metric-label" style="margin-left:12px">${caseItem.launchDateRange}</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">预估播放:</span>
+                        <span class="metric-value highlight">近3日:${caseItem.plays3d}</span>
+                        <span class="metric-value" style="margin-left:8px">总量:${caseItem.playsTotal}</span>
+                    </div>
+                </div>
+                
+                <div class="interaction-bar">
+                    <span class="interaction-item">
+                        <span class="interaction-icon">❤️</span>
+                        <span>${formatInteraction(caseItem.likes)}</span>
+                    </span>
+                    <span class="interaction-item">
+                        <span class="interaction-icon">💬</span>
+                        <span>${formatInteraction(caseItem.comments)}</span>
+                    </span>
+                    <span class="interaction-item">
+                        <span class="interaction-icon">⭐</span>
+                        <span>${formatInteraction(caseItem.saves)}</span>
+                    </span>
+                </div>
+            </div>
         </div>
-    `}).join('');
+    `).join('');
     
     // 绑定悬停播放事件
     bindCaseHoverEvents();
