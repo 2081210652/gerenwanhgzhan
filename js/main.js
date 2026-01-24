@@ -26,8 +26,16 @@ const portfolioFallback = [
         desc: '从0到1负责的项目，首月付费用户突破3000+，支撑品牌方产出百万播放级素材。',
         icon: '🎬',
         url: 'projects/creative-master/index.html',
-        independent: true,
         tags: ['AIGC 商业化', 'Veo3 引擎', '全链路闭环']
+    },
+    {
+        id: 'product-analysis',
+        title: '产品拆解文档及竞品分析文档',
+        desc: '对抖音视频数据分析领域主流竞品（飞瓜、考古家、有米云、即创、巨量创意等）进行全方位分析，输出竞品分析报告4篇；完成Seko和Oiloil两款漫剧产品的深度拆解文档，从产品定位、功能架构、商业模式进行系统性分析。',
+        icon: '📊',
+        url: 'https://ocn0hojw8s4j.feishu.cn/docx/VPEqdOUZQoV4IoxW5jOcG0kynLh',
+        openInNewTab: true,
+        tags: ['竞品分析', '产品拆解', '漫剧产品', '产品分析']
     },
     {
         id: 'zhiji-rag',
