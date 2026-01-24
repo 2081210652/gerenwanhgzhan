@@ -731,21 +731,21 @@ input {
     zoom: var(--zoom);
 }
 
-/* 案例网格 - 适应小卡片和正常卡片混排 */
-.case-grid {
+/* 模板网格特殊布局 - 支持小卡片混合 */
+.template-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
-    align-items: start;
+    gap: 16px;
+    grid-auto-rows: auto;
 }
 
 /* 小卡片占1列 */
-.case-card-small {
+.template-grid .template-card.card-small {
     grid-column: span 1;
 }
 
-/* 普通卡片占1列 */
-.case-card:not(.case-card-small) {
+/* 普通卡片占1.5列 (实际上做成占1列但宽度更大) */
+.template-grid .template-card:not(.card-small) {
     grid-column: span 1;
 }
 

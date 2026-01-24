@@ -5,15 +5,15 @@
 
 // ============================================
 // 模板数据 (可替换为 fetch 从 JSON 加载)
-// 📌 模板视频待补充: 放在 assets/templates/tpl-{id}/preview.mp4
 // ============================================
 const templatesData = [
     {
         id: 'tpl-001',
         name: '创意盲盒-有声版',
         category: 'hot',
-        cover: 'assets/templates/tpl-001/cover.jpg',
-        video: 'assets/templates/tpl-001/preview.mp4',
+        type: 'image',
+        size: 'small',
+        cover: 'assets/tpl-media/创意盲盒-use.webp',
         description: '随机创意灵感，有声版本，更具冲击力',
         usageCount: 3241,
         costPoints: 120
@@ -22,71 +22,52 @@ const templatesData = [
         id: 'tpl-002',
         name: '创意盲盒',
         category: 'hot',
-        cover: 'assets/templates/tpl-002/cover.jpg',
-        video: 'assets/templates/tpl-002/preview.mp4',
+        type: 'image',
+        size: 'small',
+        cover: 'assets/tpl-media/创意盲盒无声版-use.webp',
         description: '随机创意灵感，让您的商品与众不同',
         usageCount: 5892,
         costPoints: 100
     },
     {
         id: 'tpl-003',
-        name: '云朵世界（毛绒版）',
-        category: 'general',
-        cover: 'assets/templates/tpl-003/cover.jpg',
-        video: 'assets/templates/tpl-003/preview.mp4',
-        description: '上传产品图片，变成毛茸茸效果，进入梦幻云朵世界。各品类通用。',
+        name: '迷你美白专家',
+        category: 'beauty',
+        type: 'video',
+        video: 'assets/tpl-media/迷你美白专家-use.mp4',
+        description: '美白护肤产品专属模板，小人演绎，生动有趣',
         usageCount: 2374,
         costPoints: 120
     },
     {
         id: 'tpl-004',
-        name: '金马迎春',
-        category: 'newyear',
-        cover: 'assets/templates/tpl-004/cover.jpg',
-        video: 'assets/templates/tpl-004/preview.mp4',
-        description: '马年限定，金色骏马配合烟花效果，适合年货节推广',
+        name: '迷你珐斑师',
+        category: 'beauty',
+        type: 'video',
+        video: 'assets/tpl-media/迷你珐斑师-use.mp4',
+        description: '祛斑美白产品展示，迷你角色互动场景',
         usageCount: 1856,
         costPoints: 150
     },
     {
         id: 'tpl-005',
-        name: '创意大师新年活动',
-        category: 'newyear',
-        cover: 'assets/templates/tpl-005/cover.jpg',
-        video: 'assets/templates/tpl-005/preview.mp4',
-        description: '新年活动专属模板，超市场景，喜庆氛围',
+        name: '涂满奶油',
+        category: 'general',
+        type: 'video',
+        video: 'assets/tpl-media/涂满奶油-use.mp4',
+        description: '奶油涂抹效果，适合护肤品、食品等品类',
         usageCount: 2103,
         costPoints: 130
     },
     {
         id: 'tpl-006',
-        name: '超市购物车',
+        name: '小人搅拌',
         category: 'general',
-        cover: 'assets/templates/tpl-006/cover.jpg',
-        video: 'assets/templates/tpl-006/preview.mp4',
-        description: '购物车场景，适合日用品、食品等品类',
+        type: 'video',
+        video: 'assets/tpl-media/小人搅拌-use.mp4',
+        description: '可爱小人搅拌场景，适合食品、饮料等品类',
         usageCount: 1432,
         costPoints: 100
-    },
-    {
-        id: 'tpl-007',
-        name: '梦幻彩虹',
-        category: 'general',
-        cover: 'assets/templates/tpl-007/cover.jpg',
-        video: 'assets/templates/tpl-007/preview.mp4',
-        description: '彩虹云朵梦幻场景，清新可爱风格',
-        usageCount: 987,
-        costPoints: 110
-    },
-    {
-        id: 'tpl-008',
-        name: '唇釉特效',
-        category: 'beauty',
-        cover: 'assets/templates/tpl-008/cover.jpg',
-        video: 'assets/templates/tpl-008/preview.mp4',
-        description: '专为唇釉、口红设计的展示特效',
-        usageCount: 2567,
-        costPoints: 120
     }
 ];
 
@@ -104,30 +85,41 @@ function renderTemplates(templates) {
     const grid = document.getElementById('template-grid');
     if (!grid) return;
     
-    grid.innerHTML = templates.map((template, index) => `
-        <div class="template-card card-enter" 
-             data-id="${template.id}"
-             data-category="${template.category}"
-             data-index="${index}"
-             onclick="handleTemplateClick(${index})">
-            <div class="card-media">
-                <!-- 视频第一帧作为封面 -->
-                <video class="card-video" 
-                       src="${template.video}" 
-                       muted 
-                       loop 
-                       playsinline
-                       preload="metadata"></video>
-                <div class="play-icon">▶</div>
+    grid.innerHTML = templates.map((template, index) => {
+        const isSmall = template.size === 'small';
+        const isVideo = template.type === 'video';
+        const sizeClass = isSmall ? 'card-small' : '';
+        
+        // 根据类型生成不同的媒体内容
+        const mediaContent = isVideo 
+            ? `<video class="card-video" 
+                      src="${template.video}" 
+                      muted 
+                      loop 
+                      playsinline
+                      preload="metadata"></video>
+               <div class="play-icon">▶</div>`
+            : `<img class="card-cover" src="${template.cover}" alt="${template.name}">`;
+        
+        return `
+            <div class="template-card card-enter ${sizeClass}" 
+                 data-id="${template.id}"
+                 data-category="${template.category}"
+                 data-type="${template.type}"
+                 data-index="${index}"
+                 onclick="handleTemplateClick(${index})">
+                <div class="card-media">
+                    ${mediaContent}
+                </div>
+                <div class="card-info">
+                    <div class="card-title">${template.name}</div>
+                    <div class="card-action">随机灵感 →</div>
+                </div>
             </div>
-            <div class="card-info">
-                <div class="card-title">${template.name}</div>
-                <div class="card-action">随机灵感</div>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
     
-    // 绑定悬停播放事件
+    // 绑定悬停播放事件（仅视频卡片）
     bindTemplateHoverEvents();
 }
 
